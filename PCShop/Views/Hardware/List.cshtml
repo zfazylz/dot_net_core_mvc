@@ -1,0 +1,7 @@
+﻿@model HardwareListViewModel
+
+<h1>@Model.CurrentCategory</h1>
+@foreach (var hardware in Model.Hardwares)
+{
+    <partial name="_hardwareCard" model="hardware" />
+}
