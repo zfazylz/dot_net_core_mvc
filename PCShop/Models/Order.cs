@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace PCShop.Models
 {
-    public class Order
+    // Internal validation for each property of model
+    public class Order: IValidatableObject
     {
         [BindNever]
         public int OrderId { get; set; }
-        [Required(ErrorMessage = "Please enter your first name")]
-        [Display(Name = "First Name")]
-        [StringLength(25)]
+        [Required(ErrorMessage = "Please enter your first name")] // Error message when method throws
+        [Display(Name = "First Name")] // Displaying name on front end
+        [StringLength(25)] // And validation for max length of property and it is also required property
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Please enter your last name")]
         [Display(Name = "Last Name")]
@@ -43,5 +44,14 @@ namespace PCShop.Models
         public decimal OrderTotal { get; set; }
         [BindNever]
         public DateTime OrderPlaced { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            object[] zipCodes=new object[2]{10001, 10002};
+            if (!zipCodes.Contains(ZipCode))
+            {
+                yield return new ValidationResult("We do not deliver to that Zip Code");
+            }
+        }
     }
 }

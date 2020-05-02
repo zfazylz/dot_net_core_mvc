@@ -8,7 +8,7 @@ namespace PCShop.Models
 {
     public class HardwareRepository : IHardwareRepository
     {
-        private readonly AppDbContext _appDbContext;
+        public AppDbContext _appDbContext { get; set; }
 
         public HardwareRepository(AppDbContext appDbContext)
         {

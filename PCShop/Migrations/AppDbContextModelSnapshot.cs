@@ -484,6 +484,8 @@ namespace PCShop.Migrations
                         });
                 });
 
+            // Database validations for all models. Each property has own validation 
+            
             modelBuilder.Entity("PCShop.Models.Order", b =>
                 {
                     b.Property<int>("OrderId")
@@ -500,10 +502,10 @@ namespace PCShop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(25)")
-                        .HasMaxLength(25);
+                    b.Property<string>("FirstName") // For example here validation for First Name
+                        .IsRequired() // It is required property
+                        .HasColumnType("nvarchar(25)") // String type
+                        .HasMaxLength(25); // Max length 25
 
                     b.Property<string>("LastName")
                         .IsRequired()

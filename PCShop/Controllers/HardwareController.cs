@@ -56,5 +56,16 @@ namespace PCShop.Controllers
 
             return View(hardware);
         }
+        
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult ValidateName(string name)
+        {
+            Hardware hardware = _hardwareRepository._appDbContext.Hardwares.SingleOrDefault(h => h.Name == name);
+
+            if (hardware != null)
+                return Json($"Hardware {name} is already in use.");
+
+            return Json(data: true);
+        }
     }
 }

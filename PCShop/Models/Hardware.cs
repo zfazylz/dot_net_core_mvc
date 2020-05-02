@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace PCShop.Models
 {
     public class Hardware
     {
         public int HardwareId { get; set; }
+        [Remote(action: "ValidateName", controller: "Hardware")]
         public string Name { get; set; }
         public string Description { get; set; }
         [Column(TypeName = "decimal(18,2)")]

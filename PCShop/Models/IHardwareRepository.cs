@@ -10,5 +10,6 @@ namespace PCShop.Models
         IEnumerable<Hardware> GetAllHardware { get; }
         IEnumerable<Hardware> GetHardwareOnSale { get; }
         Hardware GetHardwareById(int hardwareId);
+        AppDbContext _appDbContext { get; set; }
     }
 }

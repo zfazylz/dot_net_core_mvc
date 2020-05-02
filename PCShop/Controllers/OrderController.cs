@@ -34,7 +34,7 @@ namespace PCShop.Controllers
 
             if (_shoppingCart.ShoppingCartItems.Count == 0)
             {
-                ModelState.AddModelError("", "Your cart is empty");
+                ModelState.AddModelError("", "Your cart is empty"); // Throwing an error [Remote] validation because we are checking it from back-end
             }
 
             //all the data is found

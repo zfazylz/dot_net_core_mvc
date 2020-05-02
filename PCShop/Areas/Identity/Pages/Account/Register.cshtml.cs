@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using PCShop.Utilities;
 
 namespace PCShop.Areas.Identity.Pages.Account
 {
@@ -48,6 +49,7 @@ namespace PCShop.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
+            [ValidEmailDomain(allowedDomain: "iitu.kz", ErrorMessage = "Email domain must be iitu.kz")] // Calling custom attribute validation
             public string Email { get; set; }
 
             [Required]
@@ -72,7 +74,7 @@ namespace PCShop.Areas.Identity.Pages.Account
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) // Validating each property of model
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
